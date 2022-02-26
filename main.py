@@ -24,7 +24,7 @@ class GraphTraversal:
         self.make_vertex()
 
     def basic_set_up(self):
-        heading = Label(self.make_canvas, text="Graph Traversing Visualization", bg="gray", fg="white",
+        heading = Label(self.make_canvas, text="Graph Traversing Visualization", bg="gray", fg="black",
                         font=("Arial", 20, "bold", "italic"))
         heading.place(x=200, y=10)
 
@@ -38,7 +38,7 @@ class GraphTraversal:
 
         self.status = Label(self.make_canvas, text="Not Visited", bg="gray", fg="black",
                             font=("Arial", 20, "bold", "italic"))
-        self.status.place(x=20, y=500)
+        self.status.place(x=20, y=550)
 
     def make_vertex(self):  # Vertex with connection make
         for i in range(31):
@@ -331,9 +331,9 @@ class GraphTraversal:
                     if temp[3]:
                         self.queue_bfs.append(temp[3])
                 take_vertex = self.queue_bfs.pop(0)
-                self.status['text'] = f"Nodes Visited: {take_vertex-1}"
+                self.status['text'] = f"Current City: {self.total_cities[take_vertex-1].cget('text')}"
+                print(self.total_cities[take_vertex-1].cget("text"))
                 self.total_cities[take_vertex-1].config(bg="red")
-                print(take_vertex)
                 self.make_canvas.itemconfig(take_vertex, fill="red")
                 self.window.update()
                 time.sleep(0.3)
@@ -346,9 +346,9 @@ class GraphTraversal:
             self.stack_dfs.append(self.vertex_store[0][0])
             while self.stack_dfs:
                 take_vertex = self.stack_dfs.pop()
-                self.status['text'] = f"Node Visited: {take_vertex-1}"
+                self.status['text'] = f"Current City: {self.total_cities[take_vertex-1].cget('text')}"
+                print(self.total_cities[take_vertex-1].cget("text"))
                 self.total_cities[take_vertex - 1].config(bg="blue")
-                print(take_vertex)
                 self.make_canvas.itemconfig(take_vertex, fill="blue")
                 self.window.update()
                 time.sleep(0.3)

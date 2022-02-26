@@ -30,15 +30,15 @@ class GraphTraversal:
 
         bfs_btn = Button(self.window, text="BFS", font=("Arial", 15, "bold"), bg="black", fg="green", relief=RAISED,
                          bd=8, command=self.bfs_traversing)
-        bfs_btn.place(x=20, y=630)
+        bfs_btn.place(x=20, y=600)
 
         dfs_btn = Button(self.window, text="DFS", font=("Arial", 15, "bold"), bg="black", fg="green", relief=RAISED,
                          bd=8, command=self.dfs_traversing)
-        dfs_btn.place(x=700, y=630)
+        dfs_btn.place(x=700, y=600)
 
-        self.status = Label(self.make_canvas, text="Not Visited", bg="chocolate", fg="brown",
+        self.status = Label(self.make_canvas, text="Not Visited", bg="gray", fg="black",
                             font=("Arial", 20, "bold", "italic"))
-        self.status.place(x=50, y=550)
+        self.status.place(x=20, y=500)
 
     def make_vertex(self):  # Vertex with connection make
         for i in range(31):
@@ -331,7 +331,7 @@ class GraphTraversal:
                     if temp[3]:
                         self.queue_bfs.append(temp[3])
                 take_vertex = self.queue_bfs.pop(0)
-                self.status['text'] = "Nodes Visited: ", take_vertex
+                self.status['text'] = f"Nodes Visited: {take_vertex-1}"
                 self.total_cities[take_vertex-1].config(bg="red")
                 print(take_vertex)
                 self.make_canvas.itemconfig(take_vertex, fill="red")
@@ -343,10 +343,10 @@ class GraphTraversal:
 
     def dfs_traversing(self):
         try:
-            self.status['text'] = "Blue: Visited"
             self.stack_dfs.append(self.vertex_store[0][0])
             while self.stack_dfs:
                 take_vertex = self.stack_dfs.pop()
+                self.status['text'] = f"Node Visited: {take_vertex-1}"
                 self.total_cities[take_vertex - 1].config(bg="blue")
                 print(take_vertex)
                 self.make_canvas.itemconfig(take_vertex, fill="blue")

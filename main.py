@@ -487,6 +487,7 @@ class GraphTraversal:
         return -1
 
     def bfs(self):
+        self.queue_bfs.clear()
         #self.reset_colors()
         global startNode, goalNode, goalCity
         print('startNode: ', startNode, 'GoalNode: ', goalNode)
@@ -497,6 +498,7 @@ class GraphTraversal:
                 if self.vertex_connections[i][0] == startNode:
                     start = i
                     break
+            print('start: ', start)
             print('bfs vector store val: ', self.vertex_connections[start][0])
             self.queue_bfs.append(self.vertex_connections[start][0])
             while self.queue_bfs:
@@ -530,6 +532,7 @@ class GraphTraversal:
 
     def dfs(self):
         #self.reset_colors()
+        self.stack_dfs.clear()
         global startNode, goalNode, goalCity
         start = startNode
         goal = goalNode
